@@ -12,7 +12,7 @@
         <framework src="com.stripe:stripe-android:5.1.0"/>
         <framework src="com.stripe:stripe-java:5.28.0"/>
 
-        <!-- <framework src="com.android.support:design:26.0.1"/> -->
+        <framework src="com.android.support:design:26.1.0"/>
 
         <config-file target="AndroidManifest.xml" parent="application">
             <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
