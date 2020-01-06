@@ -6,7 +6,7 @@
     <repo></repo>
    
     <platform name="android">
-        <framework src="com.google.android.gms:play-services-wallet:18.0.0"/>
+        <framework src="com.google.android.gms:play-services-wallet:17.0.0"/>
         <framework src="com.android.support:support-v4:26.0.1"/>
         <framework src="com.android.support:appcompat-v7:26.0.1"/>
 
