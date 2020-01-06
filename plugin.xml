@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="cordova-plugin-gpay" version="5.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" >
-	<name>GooglePay</name>
-    <description>Implements Google Pay.</description>
-    <keywords>cordova,payment,google pay</keywords>
-    <repo></repo>
+<plugin id="cordova-plugin-gpay" version="1.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>Google Pay</name>
+  <description>Implements Google Pay and integrate with master card</description>
+  <keywords>cordova,payment,google pay</keywords>
+  <repo>https://github.com/Srini-max/cordova-plugin-gpay</repo>
 
-    <platform name="android">
-        <framework src="com.google.android.gms:play-services-wallet:18.0.0"/>
+  <platform name="android">
+    <js-module name="googlepay" src="www/googlepay.js">
+      <clobbers target="GooglePay" />
+    </js-module>
 
-        <config-file target="AndroidManifest.xml" parent="application">
-            <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
-        </config-file>
+    <config-file parent="/*/application" target="AndroidManifest.xml">
+      <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
+    </config-file>
 
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="GooglePay">
-                <param name="android-package" value="com.gems.googlepay" />
-            </feature>
-        </config-file>
-
-        <js-module src="www/googlepay.js" name="payment">
-            <clobbers target="GooglePay" />
-        </js-module>
-
-        <source-file src="src/android/GooglePay.java" target-dir="src/com/cordova/plugin" />
-
-    </platform>
-	
+    <config-file parent="/*" target="res/xml/config.xml">
+      
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+    <source-file src="src/android/GooglePay.java" target-dir="src/cordova/plugin/GooglePay" />
+    <framework src="com.google.android.gms:play-services-wallet:16.0.0" />
+    <framework src="com.android.support:support-v13:27.+" />
+    <framework src="com.android.support:appcompat-v7:27.1.0" />
+  </platform>
 </plugin>
