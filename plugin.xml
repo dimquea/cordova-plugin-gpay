@@ -5,7 +5,7 @@
     <keywords>cordova,payment,google pay</keywords>
     <repo></repo>
 <engines>
-    <engine name="cordova" version=">=7.0.1"/>
+    <engine name="cordova" version=">=8.3.0"/>
 </engines>
     <platform name="android">
         <framework src="com.google.android.gms:play-services-wallet:18.0.0"/>
