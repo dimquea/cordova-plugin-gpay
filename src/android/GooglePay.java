@@ -19,7 +19,6 @@ import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.TransactionInfo;
 import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
-import com.stripe.android.model.Token;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -116,9 +115,8 @@ public class GooglePay extends CordovaPlugin {
             .setPaymentMethodTokenizationType(
                 WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY
             )
-            .addParameter("gateway", "stripe")
-            .addParameter("stripe:publishableKey", data.optString("StripePublishableKey"))
-            .addParameter("stripe:version", "5.1.0")
+            .addParameter("gateway", "mpgs")
+            .addParameter("gatewayMerchantId", "TEST820124000")
             .build();
 
         request.setPaymentMethodTokenizationParameters(params);
@@ -153,8 +151,7 @@ public class GooglePay extends CordovaPlugin {
                     case Activity.RESULT_OK:
                         PaymentData paymentData = PaymentData.getFromIntent(data);
                         String rawToken = paymentData.getPaymentMethodToken().getToken();
-                        final Token stripeToken = Token.fromString(rawToken);
-                        paymentCallbackContext.success(stripeToken.getId());
+                        paymentCallbackContext.success(paymentData);
                         Log.i("GooglePay", "Payment OK");
                         break;
                     case Activity.RESULT_CANCELED:
