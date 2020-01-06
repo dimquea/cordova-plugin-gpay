@@ -151,7 +151,7 @@ public class GooglePay extends CordovaPlugin {
                     case Activity.RESULT_OK:
                         PaymentData paymentData = PaymentData.getFromIntent(data);
                         String rawToken = paymentData.getPaymentMethodToken().getToken();
-                        paymentCallbackContext.success(paymentData);
+                        paymentCallbackContext.success(rawToken);
                         Log.i("GooglePay", "Payment OK");
                         break;
                     case Activity.RESULT_CANCELED:
