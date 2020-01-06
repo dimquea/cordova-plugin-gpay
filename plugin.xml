@@ -21,6 +21,6 @@
     <source-file src="src/android/GooglePay.java" target-dir="src/cordova/plugin/GooglePay" />
     <framework src="com.google.android.gms:play-services-wallet:15.0.0" />
     <framework src="com.android.support:support-v13:27.+" />
-    <framework src="com.android.support:appcompat-v7:27.1.0-rc01" />
+    <framework src="com.android.support:appcompat-v7:27.1.0" />
   </platform>
 </plugin>
