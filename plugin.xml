@@ -8,7 +8,7 @@
     <engine name="cordova" version=">=7.0.1"/>
 </engines>
     <platform name="android">
-        <framework src="com.google.android.gms:play-services-wallet:16.0.0"/>
+        <framework src="com.google.android.gms:play-services-wallet:17.0.0"/>
         <framework src="com.android.support:support-v4:25.0.1"/>
         <framework src="com.android.support:appcompat-v7:25.0.1"/>
 
