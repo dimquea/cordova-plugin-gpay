@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-googlepay" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>GooglePay</name>
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="cordova-plugin-gpay" version="5.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" >
+	<name>GooglePay</name>
     <description>Implements Google Pay.</description>
     <keywords>cordova,payment,google pay</keywords>
     <repo></repo>
