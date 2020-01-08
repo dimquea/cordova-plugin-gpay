@@ -17,13 +17,13 @@
     <dependency id="es6-promise-plugin" version="4.1.0" />
 
     <config-file parent="/*" target="res/xml/config.xml">
-        <feature name="com.gems.googlepay.GooglePay">
-            <param name="android-package" value="com.gems.googlepay.GooglePay"/>
+        <feature name="GooglePay">
+            <param name="android-package" value="GooglePay"/>
             <param name="onload" value="true" />
         </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"></config-file>
-    <source-file src="src/android/GooglePay.java" target-dir="src/android/GooglePay" />
+    <source-file src="src/android/GooglePay.java" target-dir="src/android/" />
     <framework src="com.google.android.gms:play-services-wallet:16.0.0" />
     <framework src="com.android.support:support-v13:27.+" />
     <framework src="com.android.support:appcompat-v7:27.1.0" />
