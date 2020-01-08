@@ -1,4 +1,4 @@
-package GooglePay;
+package com.cordova.plugin;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,9 +23,7 @@ import com.google.android.gms.wallet.WalletConstants;
 import com.google.android.gms.wallet.IsReadyToPayRequest;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
