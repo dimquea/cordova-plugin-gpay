@@ -17,10 +17,7 @@
     <dependency id="es6-promise-plugin" version="4.1.0" />
 
     <config-file parent="/*" target="res/xml/config.xml">
-        <feature name="GooglePay">
-            <param name="android-package" value="GooglePay"/>
-            <param name="onload" value="true" />
-        </feature>
+       
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"></config-file>
     <source-file src="src/android/GooglePay.java" target-dir="src/android/" />
