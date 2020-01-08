@@ -1,4 +1,4 @@
-package com.cordova.plugin;
+package GooglePay;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -40,7 +40,6 @@ public class GooglePay extends CordovaPlugin {
 
   private PaymentsClient paymentsClient = null;
   private CallbackContext callback;
-  private int environment;
 
   @Override
   protected void pluginInitialize() {
