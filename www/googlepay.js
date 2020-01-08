@@ -11,4 +11,4 @@ var GooglePay = {
   }
 }
 
-module.exports = GooglePay
+module.exports = GooglePay;
