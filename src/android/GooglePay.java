@@ -1,4 +1,3 @@
-package GooglePay;
 
 import android.app.Activity;
 import android.content.Intent;
