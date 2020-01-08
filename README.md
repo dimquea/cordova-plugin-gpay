@@ -32,7 +32,7 @@ Run below on onDeviceReady function
 ```
 
 ## Usage
-  This plugin puts the functions into window.GooglePay.
+  This plugin puts the functions into `window.GooglePay` .
   All functions return a promise.
 
 ```javascript
