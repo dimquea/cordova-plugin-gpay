@@ -29,7 +29,7 @@ Run below on onDeviceReady function
   }).catch(function(err) {
     alert(err);
   });
-});
+
 ```
 
 ## Usage
