@@ -1,4 +1,4 @@
-package GooglePay;
+package com.gems.googlepay.GooglePay;
 
 import android.app.Activity;
 import android.content.Intent;
