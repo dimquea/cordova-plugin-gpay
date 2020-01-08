@@ -7,9 +7,10 @@ This plugin only supports Android.
 
 This plugin will add these dependencies to your build.gradle file:
 
-    com.google.android.gms:play-services-wallet:16.0.0
-    com.android.support:support-v4:27.0.2
-    com.android.support:appcompat-v7:24.1.1
+    com.google.android.gms:play-services-wallet:15.0.0
+    com.android.support:support-v13:27.+
+    com.android.support:appcompat-v7:27.1.0
+    
 
 ## Installation
     cordova plugin add cordova-plugin-gpay
