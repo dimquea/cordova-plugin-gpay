@@ -9,6 +9,6 @@ var GooglePay = {
       cordova.exec(resolve, reject, 'GooglePay', 'request_payment', [ totalPrice, currency ])
     })
   }
-}
+};
 
-module.exports = GooglePay
+module.exports = GooglePay;
