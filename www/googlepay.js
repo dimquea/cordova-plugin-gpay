@@ -1,9 +1,14 @@
-var exec = require('cordova/exec');
-
-exports.isReadyToPay = function ( success, error) {
-  exec(success, error, "GooglePay", "is_ready_to_pay", []);
+var GooglePay = {
+  isReadyToPay: function () {
+    return new Promise(function (resolve, reject) {
+      cordova.exec(resolve, reject, 'GooglePay', 'is_ready_to_pay', [])
+    })
+  },
+  requestPayment: function (totalPrice, currency) {
+    return new Promise(function (resolve, reject) {
+      cordova.exec(resolve, reject, 'GooglePay', 'request_payment', [ totalPrice, currency ])
+    })
+  }
 };
 
-exports.requestPayment = function ( totalPrice, currency,success, error) {
-  exec(success, error, "GooglePay", "request_payment", [number]);
-};
+module.exports = GooglePay;
