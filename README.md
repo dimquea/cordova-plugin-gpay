@@ -50,7 +50,7 @@ GooglePay.requestPayment(totalPrice, currency)
 -  Initiates the payment journey for the user to complete.
 -  `totalPrice` must be a string representation of the total price - e.g. for £10.78, it would be 10.78
 -  `currency` must be a valid ISO 4217 currency code for the transaction
--  Resolves when the journey is complete, with the stripe token
+-  Resolves when the journey is complete, with the payment gateway token
 -  Rejects if an error occurs
 
 ## Switch to PRODUCTION
