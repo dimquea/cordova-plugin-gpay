@@ -89,7 +89,7 @@ public class GooglePay extends CordovaPlugin {
             if (mpgsToken != null) {
               // This chargeToken function is a call to your own server, which should then connect
               // to Master Card's API to finish the charge.
-              this.callback.success(mpgsToken);
+              this.callback.success(mpgsToken.getId());
             } else {
               this.callback.error("An error occurred in processing payment");
             }
