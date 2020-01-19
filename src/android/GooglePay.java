@@ -84,12 +84,14 @@ public class GooglePay extends CordovaPlugin {
             // This is the raw JSON string version of your G Pay token.
             String rawToken = paymentData.getPaymentMethodToken().getToken();
             
-	    Token mpgsToken = Token.fromString(rawToken);
+	    //Token mpgsToken = Token.fromString(rawToken);
+           
+	    String paymentToken = data.getStringExtra(CollectCardInfoActivity.EXTRA_PAYMENT_TOKEN);
 
-            if (mpgsToken != null) {
+            if (paymentToken != null) {
               // This chargeToken function is a call to your own server, which should then connect
               // to Master Card's API to finish the charge.
-              this.callback.success(mpgsToken.getId());
+              this.callback.success(paymentToken);
             } else {
               this.callback.error("An error occurred in processing payment");
             }
