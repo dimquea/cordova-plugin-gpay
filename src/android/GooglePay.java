@@ -86,7 +86,8 @@ public class GooglePay extends CordovaPlugin {
             
 	    //Token mpgsToken = Token.fromString(rawToken);
            
-	    String paymentToken = data.getStringExtra(CollectCardInfoActivity.EXTRA_PAYMENT_TOKEN);
+	    //String paymentToken = data.getStringExtra(CollectCardInfoActivity.EXTRA_PAYMENT_TOKEN);
+            String paymentToken = paymentData.getPaymentMethodToken().getToken();
 
             if (paymentToken != null) {
               // This chargeToken function is a call to your own server, which should then connect
