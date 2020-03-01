@@ -160,7 +160,7 @@ public class GooglePay extends CordovaPlugin {
     return PaymentMethodTokenizationParameters.newBuilder()
         .setPaymentMethodTokenizationType(WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY)
         .addParameter("gateway", "mpgs")
-        .addParameter("gatewayMerchantId", "TEST820134000")
+        .addParameter("gatewayMerchantId", "TEST999666000")
         .build();
   }
 
