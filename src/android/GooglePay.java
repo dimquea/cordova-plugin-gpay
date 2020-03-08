@@ -78,22 +78,35 @@ public class GooglePay extends CordovaPlugin {
         switch (resultCode) {
           case Activity.RESULT_OK:
             PaymentData paymentData = PaymentData.getFromIntent(data);
+			
+	   String paymentInformation = paymentData.toJson();
+
+    // Token will be null if PaymentDataRequest was not constructed using fromJson(String).
+    if (paymentInformation == null) {
+	                  this.callback.error("An error occurred in processing payment");
+      return;
+    }
+    JSONObject paymentMethodData;
+
+
+      paymentMethodData = new JSONObject(paymentInformation).getJSONObject("paymentMethodData");		
+			
             // You can get some data on the user's card, such as the brand and last 4 digits
-            CardInfo info = paymentData.getCardInfo();
+            //CardInfo info = paymentData.getCardInfo();
             // You can also pull the user address from the PaymentData object.
-            UserAddress address = paymentData.getShippingAddress();
+            //UserAddress address = paymentData.getShippingAddress();
             // This is the raw JSON string version of your G Pay token.
-            String rawToken = paymentData.getPaymentMethodToken().getToken();
+            //String rawToken = paymentData.getPaymentMethodToken().getToken();
             
 	    //Token mpgsToken = Token.fromString(rawToken);
-           
+            Log.d("GooglePaymentToken", paymentMethodData.getJSONObject("tokenizationData").getString("token"))
 	    //String paymentToken = data.getStringExtra(CollectCardInfoActivity.EXTRA_PAYMENT_TOKEN);
-            String paymentToken = paymentData.getPaymentMethodToken().getToken();
+            //String paymentToken = paymentData.getPaymentMethodToken().getToken();
 
-            if (paymentToken != null) {
+            if (paymentMethodData != null) {
               // This chargeToken function is a call to your own server, which should then connect
               // to Master Card's API to finish the charge.
-              this.callback.success(paymentToken);
+              this.callback.success(paymentMethodData);
             } else {
               this.callback.error("An error occurred in processing payment");
             }
