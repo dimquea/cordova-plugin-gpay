@@ -77,6 +77,7 @@ public class GooglePay extends CordovaPlugin {
       case LOAD_PAYMENT_DATA_REQUEST_CODE:
         switch (resultCode) {
           case Activity.RESULT_OK:
+    try{
             PaymentData paymentData = PaymentData.getFromIntent(data);
 			
 	   String paymentInformation = paymentData.toJson();
@@ -110,6 +111,10 @@ public class GooglePay extends CordovaPlugin {
             } else {
               this.callback.error("An error occurred in processing payment");
             }
+	       } catch (JSONException e) {
+      Log.d("GooglePaymentToken", "Error: " + e.toString());
+      return;
+    }
             break;
           case Activity.RESULT_CANCELED:
             this.callback.error("Payment cancelled");
