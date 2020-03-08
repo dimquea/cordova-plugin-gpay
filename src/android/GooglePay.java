@@ -195,7 +195,7 @@ public class GooglePay extends CordovaPlugin {
     return request.build();
   }
 }
- public static Optional<JSONObject> getPaymentDataRequest(String merchantidentifier,String totalPrice, String currency) {
+ public  Optional<JSONObject> getPaymentDataRequest(String merchantidentifier,String totalPrice, String currency) {
     try {
       JSONObject paymentDataRequest = this.getBaseRequest();
       paymentDataRequest.put(
@@ -213,11 +213,11 @@ public class GooglePay extends CordovaPlugin {
     }
   }
   
-  private static JSONObject getMerchantInfo(String merchantidentifier) throws JSONException {
+  private  JSONObject getMerchantInfo(String merchantidentifier) throws JSONException {
     return new JSONObject().put("merchantName", merchantidentifier);
   }
   
-  private static JSONObject getTransactionInfo(String price,String currency) throws JSONException {
+  private  JSONObject getTransactionInfo(String price,String currency) throws JSONException {
     JSONObject transactionInfo = new JSONObject();
     transactionInfo.put("totalPrice", price);
     transactionInfo.put("totalPriceStatus", "WalletConstants.TOTAL_PRICE_STATUS_FINAL");
@@ -227,18 +227,18 @@ public class GooglePay extends CordovaPlugin {
     return transactionInfo;
   }
   
-  private static JSONObject getBaseRequest() throws JSONException {
+  private  JSONObject getBaseRequest() throws JSONException {
     return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
   }
   
-  private static JSONObject getCardPaymentMethod(String merchantidentifier) throws JSONException {
+  private  JSONObject getCardPaymentMethod(String merchantidentifier) throws JSONException {
     JSONObject cardPaymentMethod = getBaseCardPaymentMethod();
     cardPaymentMethod.put("tokenizationSpecification", getGatewayTokenizationSpecification(merchantidentifier));
 
     return cardPaymentMethod;
   }
   
-  private static JSONObject getBaseCardPaymentMethod() throws JSONException {
+  private  JSONObject getBaseCardPaymentMethod() throws JSONException {
     JSONObject cardPaymentMethod = new JSONObject();
     cardPaymentMethod.put("type", "CARD");
 
@@ -258,7 +258,7 @@ public class GooglePay extends CordovaPlugin {
     return cardPaymentMethod;
   }  
   
-  private static JSONObject getGatewayTokenizationSpecification(String merchantidentifier) throws JSONException {
+  private  JSONObject getGatewayTokenizationSpecification(String merchantidentifier) throws JSONException {
     return new JSONObject(){{
       put("type", "PAYMENT_GATEWAY");
       put("parameters", new JSONObject(){{
@@ -269,20 +269,20 @@ public class GooglePay extends CordovaPlugin {
     }};
   }
 
-  private static JSONArray getAllowedCardNetworks() {
+  private  JSONArray getAllowedCardNetworks() {
     return new JSONArray(this.SUPPORTED_NETWORKS);
   }
- private static JSONArray getAllowedCardAuthMethods() {
+ private  JSONArray getAllowedCardAuthMethods() {
     return new JSONArray(this.SUPPORTED_METHODS);
   }
-    public static final List<String> SUPPORTED_NETWORKS = Arrays.asList(
+    public  final List<String> SUPPORTED_NETWORKS = Arrays.asList(
     "AMEX",
     "DISCOVER",
     "JCB",
     "MASTERCARD",
     "VISA");
 
-  public static final List<String> SUPPORTED_METHODS =
+  public  final List<String> SUPPORTED_METHODS =
       Arrays.asList(
           "PAN_ONLY",
           "CRYPTOGRAM_3DS");
