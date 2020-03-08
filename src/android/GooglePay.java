@@ -173,10 +173,6 @@ public class GooglePay extends CordovaPlugin {
                     .setTotalPrice(totalPrice)
                     .setCurrencyCode(currency)
                     .build())
-	    .setMerchantInfo(
-	         MerchantInfo.newBuilder()
-			     .setMerchantName(merchantidentifier)
-	                     .build())
             .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_CARD)
             .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_TOKENIZED_CARD)
             .setCardRequirements(
