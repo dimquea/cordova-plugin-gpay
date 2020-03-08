@@ -145,8 +145,7 @@ public class GooglePay extends CordovaPlugin {
   }
 
   private void requestPayment (String merchantidentifier,String totalPrice, String currency) {
-	   // TransactionInfo transaction = PaymentsUtil.createTransaction(price);
-    Optional<JSONObject> paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(merchantidentifier,totalPrice, currency);
+    Optional<JSONObject> paymentDataRequestJson = this.getPaymentDataRequest(merchantidentifier,totalPrice, currency);
     if (!paymentDataRequestJson.isPresent()) {
       return;
     }
