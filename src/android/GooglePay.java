@@ -223,7 +223,7 @@ public class GooglePay extends CordovaPlugin {
     JSONObject transactionInfo = new JSONObject();
     transactionInfo.put("totalPrice", price);
     transactionInfo.put("totalPriceStatus",  "FINAL");
-    transactionInfo.put("countryCode", currency);
+    transactionInfo.put("countryCode", "UAE");
     transactionInfo.put("currencyCode", currency);
 
     return transactionInfo;
