@@ -36,7 +36,7 @@ public class GooglePay extends CordovaPlugin {
   private static final String IS_READY_TO_PAY = "is_ready_to_pay";
   private static final String REQUEST_PAYMENT = "request_payment";
 
-  private static final int LOAD_PAYMENT_DATA_REQUEST_CODE = 42;
+  private static final int LOAD_PAYMENT_DATA_REQUEST_CODE = 992;
 
   private PaymentsClient paymentsClient = null;
   private CallbackContext callback;
