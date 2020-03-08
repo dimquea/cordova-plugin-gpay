@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class GooglePay extends CordovaPlugin {
   private static final String IS_READY_TO_PAY = "is_ready_to_pay";
