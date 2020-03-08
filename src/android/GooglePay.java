@@ -197,7 +197,8 @@ public class GooglePay extends CordovaPlugin {
     request.setPaymentMethodTokenizationParameters(this.createTokenisationParameters(merchantidentifier));
     return request.build();
   }
-}
+	
+//}
  private  Optional<JSONObject> getPaymentDataRequest(String merchantidentifier,String totalPrice, String currency) {
     try {
       JSONObject paymentDataRequest = this.getBaseRequest();
@@ -289,3 +290,4 @@ public class GooglePay extends CordovaPlugin {
       Arrays.asList(
           "PAN_ONLY",
           "CRYPTOGRAM_3DS");
+}
