@@ -63,7 +63,7 @@ public class GooglePay extends CordovaPlugin {
     if (action.equals(IS_READY_TO_PAY)) {
       this.isReadyToPay();
     } else if (action.equals(REQUEST_PAYMENT)) {
-      this.requestPayment(data.getString(0), data.getString(1));
+      this.requestPayment(data.getString(0),data.getString(1), data.getString(2));
     } else {
       return false;
     }
@@ -144,8 +144,8 @@ public class GooglePay extends CordovaPlugin {
       });
   }
 
-  private void requestPayment (String totalPrice, String currency) {
-    PaymentDataRequest request = this.createPaymentDataRequest(totalPrice, currency);
+  private void requestPayment (String merchantidentifier,String totalPrice, String currency) {
+    PaymentDataRequest request = this.createPaymentDataRequest(merchantidentifier,totalPrice, currency);
     Activity activity = this.cordova.getActivity();
     if (request != null) {
       cordova.setActivityResultCallback(this);
@@ -156,15 +156,15 @@ public class GooglePay extends CordovaPlugin {
     }
   }
 
-  private PaymentMethodTokenizationParameters createTokenisationParameters() {
+  private PaymentMethodTokenizationParameters createTokenisationParameters(String merchantidentifier) {
     return PaymentMethodTokenizationParameters.newBuilder()
         .setPaymentMethodTokenizationType(WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY)
         .addParameter("gateway", "mpgs")
-        .addParameter("gatewayMerchantId", "999666000")
+        .addParameter("gatewayMerchantId", merchantidentifier)
         .build();
   }
 
-  private PaymentDataRequest createPaymentDataRequest(String totalPrice, String currency) {
+  private PaymentDataRequest createPaymentDataRequest(String merchantidentifier,String totalPrice, String currency) {
     PaymentDataRequest.Builder request =
         PaymentDataRequest.newBuilder()
             .setTransactionInfo(
@@ -184,7 +184,7 @@ public class GooglePay extends CordovaPlugin {
                         WalletConstants.CARD_NETWORK_MASTERCARD))
                     .build());
 
-    request.setPaymentMethodTokenizationParameters(this.createTokenisationParameters());
+    request.setPaymentMethodTokenizationParameters(this.createTokenisationParameters(merchantidentifier));
     return request.build();
   }
 }
