@@ -222,7 +222,7 @@ public class GooglePay extends CordovaPlugin {
   private  JSONObject getTransactionInfo(String price,String currency) throws JSONException {
     JSONObject transactionInfo = new JSONObject();
     transactionInfo.put("totalPrice", price);
-    transactionInfo.put("totalPriceStatus", WalletConstants.TOTAL_PRICE_STATUS_FINAL);
+    transactionInfo.put("totalPriceStatus",  "FINAL");
     transactionInfo.put("countryCode", currency);
     transactionInfo.put("currencyCode", currency);
 
