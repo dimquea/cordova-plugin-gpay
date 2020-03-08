@@ -221,7 +221,7 @@ public class GooglePay extends CordovaPlugin {
   private  JSONObject getTransactionInfo(String price,String currency) throws JSONException {
     JSONObject transactionInfo = new JSONObject();
     transactionInfo.put("totalPrice", price);
-    transactionInfo.put("totalPriceStatus", "WalletConstants.TOTAL_PRICE_STATUS_FINAL");
+    transactionInfo.put("totalPriceStatus", WalletConstants.TOTAL_PRICE_STATUS_FINAL);
     transactionInfo.put("countryCode", currency);
     transactionInfo.put("currencyCode", currency);
 
@@ -261,7 +261,7 @@ public class GooglePay extends CordovaPlugin {
   
   private  JSONObject getGatewayTokenizationSpecification(String merchantidentifier) throws JSONException {
     return new JSONObject(){{
-      put("type", "PAYMENT_GATEWAY");
+      put("type", WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY);
       put("parameters", new JSONObject(){{
         put("gateway", "mpgs");
         put("gatewayMerchantId", merchantidentifier);
