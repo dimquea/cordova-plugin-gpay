@@ -262,7 +262,7 @@ public class GooglePay extends CordovaPlugin {
   
   private  JSONObject getGatewayTokenizationSpecification(String merchantidentifier) throws JSONException {
     return new JSONObject(){{
-      put("type", WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY);
+      put("type", "PAYMENT_GATEWAY");
       put("parameters", new JSONObject(){{
         put("gateway", "mpgs");
         put("gatewayMerchantId", merchantidentifier);
