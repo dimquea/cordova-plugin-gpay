@@ -145,7 +145,15 @@ public class GooglePay extends CordovaPlugin {
   }
 
   private void requestPayment (String merchantidentifier,String totalPrice, String currency) {
-    PaymentDataRequest request = this.createPaymentDataRequest(merchantidentifier,totalPrice, currency);
+	   // TransactionInfo transaction = PaymentsUtil.createTransaction(price);
+    Optional<JSONObject> paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(merchantidentifier,totalPrice, currency);
+    if (!paymentDataRequestJson.isPresent()) {
+      return;
+    }
+    PaymentDataRequest request =
+        PaymentDataRequest.fromJson(paymentDataRequestJson.get().toString());
+	  
+    //PaymentDataRequest request = this.createPaymentDataRequest(merchantidentifier,totalPrice, currency);
     Activity activity = this.cordova.getActivity();
     if (request != null) {
       cordova.setActivityResultCallback(this);
@@ -188,3 +196,94 @@ public class GooglePay extends CordovaPlugin {
     return request.build();
   }
 }
+ public static Optional<JSONObject> getPaymentDataRequest(String merchantidentifier,String totalPrice, String currency) {
+    try {
+      JSONObject paymentDataRequest = this.getBaseRequest();
+      paymentDataRequest.put(
+          "allowedPaymentMethods", new JSONArray().put(this.getCardPaymentMethod(merchantidentifier)));
+      paymentDataRequest.put("transactionInfo", this.getTransactionInfo(totalPrice,currency));
+      paymentDataRequest.put("merchantInfo", this.getMerchantInfo(merchantidentifier));
+
+      /* An optional shipping address requirement is a top-level property of the PaymentDataRequest
+      JSON object. */
+      paymentDataRequest.put("shippingAddressRequired", false);
+
+      return Optional.of(paymentDataRequest);
+    } catch (JSONException e) {
+      return Optional.empty();
+    }
+  }
+  
+  private static JSONObject getMerchantInfo(String merchantidentifier) throws JSONException {
+    return new JSONObject().put("merchantName", merchantidentifier);
+  }
+  
+  private static JSONObject getTransactionInfo(String price,String currency) throws JSONException {
+    JSONObject transactionInfo = new JSONObject();
+    transactionInfo.put("totalPrice", price);
+    transactionInfo.put("totalPriceStatus", "WalletConstants.TOTAL_PRICE_STATUS_FINAL");
+    transactionInfo.put("countryCode", currency);
+    transactionInfo.put("currencyCode", currency);
+
+    return transactionInfo;
+  }
+  
+  private static JSONObject getBaseRequest() throws JSONException {
+    return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
+  }
+  
+  private static JSONObject getCardPaymentMethod(String merchantidentifier) throws JSONException {
+    JSONObject cardPaymentMethod = getBaseCardPaymentMethod();
+    cardPaymentMethod.put("tokenizationSpecification", getGatewayTokenizationSpecification(merchantidentifier));
+
+    return cardPaymentMethod;
+  }
+  
+  private static JSONObject getBaseCardPaymentMethod() throws JSONException {
+    JSONObject cardPaymentMethod = new JSONObject();
+    cardPaymentMethod.put("type", "CARD");
+
+    JSONObject parameters = new JSONObject();
+    parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
+    parameters.put("allowedCardNetworks", getAllowedCardNetworks());
+    // Optionally, you can add billing address/phone number associated with a CARD payment method.
+    parameters.put("billingAddressRequired", true);
+
+    JSONObject billingAddressParameters = new JSONObject();
+    billingAddressParameters.put("format", "FULL");
+
+    parameters.put("billingAddressParameters", billingAddressParameters);
+
+    cardPaymentMethod.put("parameters", parameters);
+
+    return cardPaymentMethod;
+  }  
+  
+  private static JSONObject getGatewayTokenizationSpecification(String merchantidentifier) throws JSONException {
+    return new JSONObject(){{
+      put("type", "PAYMENT_GATEWAY");
+      put("parameters", new JSONObject(){{
+        put("gateway", "mpgs");
+        put("gatewayMerchantId", merchantidentifier);
+        }
+      });
+    }};
+  }
+
+  private static JSONArray getAllowedCardNetworks() {
+    return new JSONArray(this.SUPPORTED_NETWORKS);
+  }
+ private static JSONArray getAllowedCardAuthMethods() {
+    return new JSONArray(this.SUPPORTED_METHODS);
+  }
+    public static final List<String> SUPPORTED_NETWORKS = Arrays.asList(
+    "AMEX",
+    "DISCOVER",
+    "JCB",
+    "MASTERCARD",
+    "VISA");
+
+  public static final List<String> SUPPORTED_METHODS =
+      Arrays.asList(
+          "PAN_ONLY",
+          "CRYPTOGRAM_3DS");
