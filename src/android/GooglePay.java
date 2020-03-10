@@ -77,7 +77,7 @@ public class GooglePay extends CordovaPlugin {
             case LOAD_PAYMENT_DATA_REQUEST_CODE:
                 switch (resultCode) {
                     case Activity.RESULT_OK:
-                        try {
+                       // try {
                             PaymentData paymentData = PaymentData.getFromIntent(data);
 
                             //String paymentInformation = paymentData.toJson();
