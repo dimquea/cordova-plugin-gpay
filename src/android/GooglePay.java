@@ -80,29 +80,31 @@ public class GooglePay extends CordovaPlugin {
                         try {
                             PaymentData paymentData = PaymentData.getFromIntent(data);
 
-                            String paymentInformation = paymentData.toJson();
+                            //String paymentInformation = paymentData.toJson();
 
                             // Token will be null if PaymentDataRequest was not constructed using fromJson(String).
-                            if (paymentInformation == null) {
-                                this.callback.error("An error occurred in processing payment");
-                                return;
-                            }
-                            JSONObject paymentMethodData;
+                            //if (paymentInformation == null) {
+                            //    this.callback.error("An error occurred in processing payment");
+                            //    return;
+                            //}
+                            //JSONObject paymentMethodData;
 
 
-                            paymentMethodData = new JSONObject(paymentInformation).getJSONObject("paymentMethodData");
+                            //paymentMethodData = new JSONObject(paymentInformation).getJSONObject("paymentMethodData");
 
                             // You can get some data on the user's card, such as the brand and last 4 digits
-                            //CardInfo info = paymentData.getCardInfo();
+                            CardInfo info = paymentData.getCardInfo();
                             // You can also pull the user address from the PaymentData object.
-                            //UserAddress address = paymentData.getShippingAddress();
+                            UserAddress address = paymentData.getShippingAddress();
                             // This is the raw JSON string version of your G Pay token.
-                            //String rawToken = paymentData.getPaymentMethodToken().getToken();
+                            String paymentToken = paymentData.getPaymentMethodToken().getToken();
 
                             //Token mpgsToken = Token.fromString(rawToken);
-                            Log.d("GooglePaymentToken", paymentMethodData.getJSONObject("tokenizationData").getString("token"));
-                            //String paymentToken = data.getStringExtra(CollectCardInfoActivity.EXTRA_PAYMENT_TOKEN);
-                            String paymentToken = paymentMethodData.getJSONObject("tokenizationData").getString("token");
+                            
+							Log.d("GooglePaymentToken", paymentData.getPaymentMethodToken().getToken());
+                           
+						   //String paymentToken = data.getStringExtra(CollectCardInfoActivity.EXTRA_PAYMENT_TOKEN);
+                            //String paymentToken = paymentMethodData.getJSONObject("tokenizationData").getString("token");
 
                             if (paymentToken != null) {
                                 // This chargeToken function is a call to your own server, which should then connect
@@ -164,14 +166,14 @@ public class GooglePay extends CordovaPlugin {
     }
 
     private void requestPayment(String merchantidentifier, String totalPrice, String currency) {
-        Optional < JSONObject > paymentDataRequestJson = this.getPaymentDataRequest(merchantidentifier, totalPrice, currency);
-        if (!paymentDataRequestJson.isPresent()) {
-            return;
-        }
-        PaymentDataRequest request =
-            PaymentDataRequest.fromJson(paymentDataRequestJson.get().toString());
+        //Optional < JSONObject > paymentDataRequestJson = this.getPaymentDataRequest(merchantidentifier, totalPrice, currency);
+        //if (!paymentDataRequestJson.isPresent()) {
+        //    return;
+        //}
+        //PaymentDataRequest request =
+        //    PaymentDataRequest.fromJson(paymentDataRequestJson.get().toString());
 
-        //PaymentDataRequest request = this.createPaymentDataRequest(merchantidentifier,totalPrice, currency);
+        PaymentDataRequest request = this.createPaymentDataRequest(merchantidentifier,totalPrice, currency);
         Activity activity = this.cordova.getActivity();
         if (request != null) {
             cordova.setActivityResultCallback(this);
