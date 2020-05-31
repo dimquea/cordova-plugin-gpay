@@ -47,7 +47,7 @@ public class GooglePay extends CordovaPlugin {
         this.paymentsClient = Wallet.getPaymentsClient(
             this.cordova.getActivity().getApplicationContext(),
             new Wallet.WalletOptions.Builder()
-            .setEnvironment(WalletConstants.ENVIRONMENT_PRODUCTION)
+            .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
             .build()
         );
     }
