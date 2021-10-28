@@ -111,7 +111,7 @@ public class GooglePay extends CordovaPlugin {
                                 // to Master Card's API to finish the charge.
                                 this.callback.success(paymentToken);
                             } else {
-                                this.callback.error("An error occurred in processing payment");
+                                this.callback.error("Произошла ошибка при обработке платежа");
                             }
                             //} catch (JSONException e) {
                             //Log.d("GooglePaymentToken", "Error: " + e.toString());
@@ -119,11 +119,11 @@ public class GooglePay extends CordovaPlugin {
                             //}
                             break;
                             case Activity.RESULT_CANCELED:
-                                this.callback.error("Payment cancelled");
+                                this.callback.error("Платёж отменён");
                                 break;
                             case AutoResolveHelper.RESULT_ERROR:
                                 Status status = AutoResolveHelper.getStatusFromIntent(data);
-                                this.callback.error("Error in processing your payment");
+                                this.callback.error("Ошибка при обработке вашего платежа");
                                 // Log the status for debugging
                                 // Generally there is no need to show an error to
                                 // the user as the Google Payment API will do that
@@ -155,7 +155,7 @@ public class GooglePay extends CordovaPlugin {
                     public void onComplete(Task < Boolean > task) {
                         try {
                             boolean result = task.getResult(ApiException.class);
-                            if (!result) callbackContext.error("Not supported");
+                            if (!result) callbackContext.error("Не поддерживается");
                             else callbackContext.success();
 
                         } catch (ApiException exception) {
@@ -187,7 +187,7 @@ public class GooglePay extends CordovaPlugin {
         private PaymentMethodTokenizationParameters createTokenisationParameters(String merchantidentifier) {
             return PaymentMethodTokenizationParameters.newBuilder()
                 .setPaymentMethodTokenizationType(WalletConstants.PAYMENT_METHOD_TOKENIZATION_TYPE_PAYMENT_GATEWAY)
-                .addParameter("gateway", "mpgs")
+                .addParameter("gateway", "sberbank")
                 .addParameter("gatewayMerchantId", merchantidentifier)
                 .build();
         }
@@ -243,7 +243,7 @@ public class GooglePay extends CordovaPlugin {
             JSONObject transactionInfo = new JSONObject();
             transactionInfo.put("totalPrice", price);
             transactionInfo.put("totalPriceStatus", "FINAL");
-            transactionInfo.put("countryCode", "AE");
+            transactionInfo.put("countryCode", "RU");
             transactionInfo.put("currencyCode", currency);
 
             return transactionInfo;
@@ -286,7 +286,7 @@ public class GooglePay extends CordovaPlugin {
                     put("type", "PAYMENT_GATEWAY");
                     put("parameters", new JSONObject() {
                         {
-                            put("gateway", "mpgs");
+                            put("gateway", "sberbank");
                             put("gatewayMerchantId", merchantidentifier);
                         }
                     });
