@@ -1,6 +1,7 @@
 # cordova-plugin-gpay
 
 Cordova plugin for Master Card - Google Pay integration
+Modified for use in Russia with SberBank + translated errors.
 
 ## Notes
 This plugin only supports Android.
@@ -21,7 +22,7 @@ Run below on onDeviceReady function
 
 ```javascript
   GooglePay.isReadyToPay().then(function() {
-    GooglePay.requestPayment(1000, 'AED').then(function(token) {
+    GooglePay.requestPayment('merchantID', 1000, 'RU').then(function(token) {
       alert(token);
     }).catch(function(err) {
       alert(err);
@@ -44,10 +45,11 @@ GooglePay.isReadyToPay()
 -  Rejects if not, or if it encounters an error
 
 ```javascript
-GooglePay.requestPayment(totalPrice, currency)
+GooglePay.requestPayment(identifier, totalPrice, currency)
 ```
 
 -  Initiates the payment journey for the user to complete.
+-  `identifier` your merchant ID
 -  `totalPrice` must be a string representation of the total price - e.g. for £10.78, it would be 10.78
 -  `currency` must be a valid ISO 4217 currency code for the transaction
 -  Resolves when the journey is complete, with the payment gateway token
@@ -63,6 +65,9 @@ You need to request for production access before test on production environment.
 
 Make sure you check the APK on a real device and not on an emulator.
 
+## Credits
+
+Originally posted by Srini-max.
 
 ## License
 
