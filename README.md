@@ -14,7 +14,7 @@ This plugin will add these dependencies to your build.gradle file:
     
 
 ## Installation
-    cordova plugin add cordova-plugin-gpay
+    cordova plugin add https://github.com/dimquea/cordova-plugin-gpay
 
 ## Quick Example
 
@@ -32,6 +32,8 @@ Run below on onDeviceReady function
   });
 
 ```
+
+Default gateway identefier is 'sberbank'. You may change it in src\android\GooglePay.java:190
 
 ## Usage
   This plugin puts the functions into `window.GooglePay` .

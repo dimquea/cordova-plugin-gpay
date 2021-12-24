@@ -3,7 +3,7 @@
   <name>Google Pay</name>
   <description>Implements Google Pay and integrate with master card</description>
   <keywords>cordova,payment,google pay</keywords>
-  <repo>https://github.com/Srini-max/cordova-plugin-gpay</repo>
+  <repo>https://github.com/dimquea/cordova-plugin-gpay</repo>
 
   <platform name="android">
     <js-module name="googlepay" src="www/googlepay.js">
